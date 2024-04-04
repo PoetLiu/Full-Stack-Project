@@ -9,7 +9,7 @@ import Authenticator from "./middlewares/validate.js";
 const uri = "mongodb+srv://albertliumr:TO5ZyE9PjM9yIxYx@cluster0.idyc212.mongodb.net/assignment3?retryWrites=true&w=majority";
 const session_store = MongoStore.create({
     mongoUrl: uri,
-    dbName: "assignment4",
+    dbName: "project",
     collectionName: "sessions"
 })
 

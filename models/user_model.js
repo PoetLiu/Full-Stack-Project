@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-const uri = "mongodb+srv://albertliumr:TO5ZyE9PjM9yIxYx@cluster0.idyc212.mongodb.net/assignment4?retryWrites=true&w=majority";
+const uri = "mongodb+srv://albertliumr:TO5ZyE9PjM9yIxYx@cluster0.idyc212.mongodb.net/project?retryWrites=true&w=majority";
 
 mongoose.connect(uri)
 .then(() => {

@@ -1,0 +1,77 @@
+<%- include('./partials/header.ejs') %>
+
+  <body>
+    <%- include('./partials/navbar.ejs', {userType: user?.userType}) %>
+      <h2 class="title">G Test</h2>
+      <%- include('./partials/message.ejs') -%>
+        <form action="/g" method="POST" id="g2-form" class="shadow mb-5 bg-body rounded form">
+          <h3>Personal Information</h3>
+          <div class="mb-3">
+            <label for="firstname" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstname" name="firstName" value="<%= user.firstName %>"
+              disabled>
+          </div>
+          <div class="mb-3">
+            <label for="lastname" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastname" name="lastName" value="<%= user.lastName%>" disabled>
+          </div>
+
+          <div class="row g-3">
+            <div class="col mb-3">
+              <label for="age" class="form-label">Age</label>
+              <input type="number" class="form-control" id="age" name="age" value="<%= user.age %>" disabled>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date" name="date" value="<%= user.appointment.date %>" disabled>
+          </div>
+
+          <div class="mb-3">
+            <label for="time" class="form-label">Time</label>
+            <select id="time" name="appointmentId" class="form-select" aria-label="select example" disabled>
+              <% if (user.appointment.time) { %>
+                <option selected>
+                  <%= user.appointment.time %>
+                </option>
+                <% } %>
+            </select>
+          </div>
+
+          <hr class="hr" />
+          <h3>Car Information</h3>
+          <div class="row g-3">
+            <div class="col mb-3">
+              <label for="make" class="form-label">Make</label>
+              <input type="text" class="form-control" id="make" name="make" value="<%= user.carDetails.make %>"
+                required>
+            </div>
+            <div class="col mb-3">
+              <label for="model" class="form-label">Model</label>
+              <input type="text" class="form-control" id="model" name="model" value="<%= user.carDetails.model %>"
+                required>
+            </div>
+            <div class="col mb-3">
+              <label for="year" class="form-label">Year</label>
+              <input type="number" min="1900" max="9999" class="form-control" id="year" name="year"
+                value="<%= user.carDetails.year %>" required>
+            </div>
+          </div>
+          <div class="row g-3">
+            <div class="col mb-3">
+              <label for="platno" class="form-label">Plat Number</label>
+              <input type="text" class="form-control" id="platno" name="platno" value="<%= user.carDetails.platno %>"
+                required>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button id="submit" type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+        <%- include('./partials/footer.ejs') %>
+          <%- include('./partials/libs.ejs') -%>
+  </body>
+
+  </html>

@@ -1,0 +1,39 @@
+main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main > * {
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+}
+
+#footer {
+    margin-top: 20px;
+    padding: 20px;
+    font-style: italic;
+    text-align: center;
+    background-color: #35d2fd;
+}
+
+#carousel {
+    width: 80%;
+    margin: 0 auto;
+}
+
+#carousel img {
+    object-fit: cover;
+}
+
+.form {
+    width: 60%;
+    margin: 0 auto;
+    padding: 60px 30px;
+}
+
+hr {
+    margin: 30px 0;
+}

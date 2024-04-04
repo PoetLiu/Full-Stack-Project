@@ -1,0 +1,43 @@
+<%- include('./partials/header.ejs') -%>
+
+  <body>
+    <%- include('./partials/navbar.ejs') -%>
+      <div class="title">
+        <h2>Appointment</h2>
+        <p>Add appointment slots here.</p>
+      </div>
+      <main>
+        <%- include('./partials/message.ejs') -%>
+          <form id="appointment" class="shadow p-3 mb-5 bg-body rounded form" action="/appointment" method="POST">
+            <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
+              <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            <div class="mb-3">
+              <label for="time" class="form-label">Time</label>
+              <select id="time" name="time" class="form-select" aria-label="select example" required>
+                <option value="" disabled>Select a time</option>
+                <option value="09:00">09:00</option>
+                <option value="09:30">09:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="13:00">13:00</option>
+                <option value="13:30">13:30</option>
+                <option value="14:00">14:00</option>
+              </select>
+            </div>
+
+            <div class="text-center">
+              <button id="submit" type="submit" class="btn btn-primary">Add</button>
+            </div>
+          </form>
+      </main>
+      <%- include('./partials/libs.ejs') -%>
+        <script src="js/appointment.js"></script>
+  </body>
+
+  </html>

@@ -1,0 +1,28 @@
+<%- include('./partials/header.ejs') -%>
+
+  <body>
+    <%- include('./partials/navbar.ejs') -%>
+      <h2 class="title">Login</h2>
+      <% if (msg) { %>
+        <div class="alert alert-primary text-center" role="alert">
+          <%= msg %>
+        </div>
+        <% } %>
+      <form action="/login" method="POST" id="login" class="shadow p-3 mb-5 bg-body rounded form">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="username" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+
+        <div class="text-center">
+          <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+      <%- include('./partials/footer.ejs') -%>
+  </body>
+
+  </html>

@@ -1,0 +1,32 @@
+<%- include('./partials/header.ejs') %>
+
+    <body>
+        <%- include('./partials/navbar.ejs') -%>
+        <main>
+            <div class="title">
+                <h2>Examiner</h2>
+            </div>
+        <form id="search" class="row g-3 justify-content-center mt-1">
+            <div class="col-auto">
+                <select id="testType" name="testType" class="form-select" 
+                    aria-label="select example" required>
+                        <option >Test Type<option>
+                        <option value="G2">G2<option>
+                        <option value="G">G<option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Search</button>
+            </div>
+        </form>
+        <hr>
+
+        <div id="result"></div>
+    </main>
+
+        <%- include('./partials/footer.ejs') %>
+            <%- include('./partials/libs.ejs') -%>
+            <script src="js/examiner.js"></script>
+    </body>
+
+    </html>

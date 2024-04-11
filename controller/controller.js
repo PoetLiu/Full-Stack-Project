@@ -286,6 +286,27 @@ class Controller {
             console.log(error);
         }
     };
+
+    static driver_appointed_get = async (req, res) => {
+        const testType = req.query.testType || ["G2", "G"];
+        try {
+            // find drivers who booked the appointment.
+            const users = await User.find(
+                {
+                    testType: testType,
+                }
+            )
+            .populate("appointment");
+            res.json(users); 
+        } catch (err) {
+            console.log(`Failed to fetch from db due to the error below\n${err}`);
+            res.send(err);
+        }
+    }
+
+    static examiner_get = async (req, res) => {
+        res.render(`examiner.ejs`, { userType: req.session.userType, msg: this.getMsgOnce(req) });
+    }
 }
 
 export default Controller;

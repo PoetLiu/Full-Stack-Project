@@ -1,7 +1,8 @@
 const publicPaths = ["dashboard", "login", "signup"];
 const validPaths = {
     "Driver": ["g2", "g", "logout", "appointment_query"],
-    "Admin": ["appointment", "logout", "appointment_query"]
+    "Admin": ["appointment", "logout", "appointment_query"],
+    "Examiner": ["examiner", "logout", "examiner_get", "drivers_appointed"]
 }
 
 const Authenticator = (req, res, next) => {

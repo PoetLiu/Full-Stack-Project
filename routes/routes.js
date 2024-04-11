@@ -37,9 +37,11 @@ router.post("/logout", Controller.logout_post);
 router.get("/signup", Controller.signup_get);
 router.post("/signup", Controller.signup_post);
 
-
 router.get("/appointment", Controller.appointment_get);
 router.get("/appointment_query", Controller.appointment_query_get);
 router.post("/appointment", Controller.appointment_post);
+
+router.get("/driver_appointed", Controller.driver_appointed_get);
+router.get("/examiner", Controller.examiner_get);
 
 export default router;

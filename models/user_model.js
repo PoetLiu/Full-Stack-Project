@@ -25,7 +25,10 @@ const userSchema = mongoose.Schema({
         model: {type: String, required: true, default: "DEFAULT"},
         year: {type: Number, required: true, default: 0},
         platno: {type: String, required: true, default: "DEFAULT"},
-    }
+    },
+    testType: {type: String},
+    testComment: {type: String},
+    testPassed: {type: Boolean},
 });
 
 const userModel = mongoose.model("user", userSchema);

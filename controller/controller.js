@@ -123,7 +123,8 @@ class Controller {
                     model: data.model,
                     year: data.year,
                     platno: data.platno,
-                }
+                },
+                testType: "G2",
             });
 
             console.log(user);
@@ -289,6 +290,7 @@ class Controller {
 
     static driver_appointed_get = async (req, res) => {
         const testType = req.query.testType || ["G2", "G"];
+        console.log(testType);
         try {
             // find drivers who booked the appointment.
             const users = await User.find(
@@ -297,6 +299,7 @@ class Controller {
                 }
             )
             .populate("appointment");
+            console.log(users);
             res.json(users); 
         } catch (err) {
             console.log(`Failed to fetch from db due to the error below\n${err}`);
@@ -307,6 +310,29 @@ class Controller {
     static examiner_get = async (req, res) => {
         res.render(`examiner.ejs`, { userType: req.session.userType, msg: this.getMsgOnce(req) });
     }
+
+    static mark_post = async (req, res) => {
+        try {
+            const form = req.body;
+            console.log(form);
+
+            const user = await User.findByIdAndUpdate(form.driverId, {
+                testResult: form.result,
+                testComment: form.comment,
+            });
+            console.log(user);
+            if (user) {
+                req.session.msg = `Dear examiner, marked successful!`; 
+                res.redirect("/examiner");
+            } else {
+                req.session.msg = `Unknow userId: ${req.session.userId}.`;
+                res.redirect("/examiner");
+            }
+        } catch (err) {
+            console.log(`User Not Featched from db due to the error below\n${err}`);
+            res.send(err);
+        }
+    };
 }
 
 export default Controller;

@@ -37,3 +37,17 @@ main > * {
 hr {
     margin: 30px 0;
 }
+
+#result {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card img {
+    text-align: center;
+    max-width: 250px;
+}
+
+.hide {
+    display: none;
+}

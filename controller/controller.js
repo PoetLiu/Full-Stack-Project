@@ -333,6 +333,32 @@ class Controller {
             res.send(err);
         }
     };
+
+    static candidate_get = async (req, res) => {
+        res.render(`candidate.ejs`, { userType: req.session.userType, msg: this.getMsgOnce(req) });
+    }
+
+    static candidate_query_get = async (req, res) => {
+        const testType = req.query.testType || ["G2", "G"];
+        console.log(testType);
+        try {
+            // find drivers who had test result.
+            const users = await User.find(
+                {
+                    testType: testType,
+                    testPassed: {
+                        $ne: null
+                    }
+                }
+            )
+            .populate("appointment");
+            console.log(users);
+            res.json(users); 
+        } catch (err) {
+            console.log(`Failed to fetch from db due to the error below\n${err}`);
+            res.send(err);
+        }
+    }
 }
 
 export default Controller;

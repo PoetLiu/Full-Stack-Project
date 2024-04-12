@@ -45,4 +45,7 @@ router.get("/driver_appointed", Controller.driver_appointed_get);
 router.get("/examiner", Controller.examiner_get);
 router.post("/mark", Controller.mark_post);
 
+router.get("/candidate", Controller.candidate_get);
+router.get("/candidate_query", Controller.candidate_query_get);
+
 export default router;

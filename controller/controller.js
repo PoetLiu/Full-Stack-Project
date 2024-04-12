@@ -317,8 +317,8 @@ class Controller {
             console.log(form);
 
             const user = await User.findByIdAndUpdate(form.driverId, {
-                testResult: form.result,
-                testComment: form.comment,
+                testPassed: form.testPassed,
+                testComment: form.testComment,
             });
             console.log(user);
             if (user) {

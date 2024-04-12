@@ -34,5 +34,13 @@ $(document).ready(function () {
 
 const markDriver = (i) => {
   $("#driverId").val(drivers[i]._id);
+  $("input[name=testPassed][value=" + drivers[i].testPassed + "]").prop('checked', true);
+  $("#comment").val(drivers[i].testComment);
+
+  if (drivers[i].testPassed != null) {
+    $("#submit").attr("disabled", true);
+    $("#comment").attr("disabled", true);
+    $("input[name=testPassed]").attr("disabled", true);
+  }
   myModal.show();
 }

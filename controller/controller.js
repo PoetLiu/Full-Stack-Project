@@ -16,28 +16,29 @@ class Controller {
 
     static g_get = async (req, res) => {
         try {
-            const user = await this.getUserById(req.session.userId);
-            console.log(user);
-            if (user) {
-                if (user.licenseNumber === 'DEFAULT') {
-                    req.session.msg = `Dear ${user.username}, please provide details.`;
-                    res.redirect("/g2");
-                } else {
-                    res.render("g.ejs", { msg: this.getMsgOnce(req), user: user });
-                }
+          const user = await this.getUserById(req.session.userId);
+          console.log(user);
+          if (user) {
+            if (user.licenseNumber === 'DEFAULT') {
+              req.session.msg = `Dear ${user.username}, please provide details.`;
+              res.redirect("/g2");
             } else {
-                req.session.msg = `Unknow userId: ${req.session.userId}.`;
-                res.redirect("/login")
+              res.render("g.ejs", { msg: this.getMsgOnce(req), user: user });
             }
+          } else {
+            req.session.msg = `Unknow userId: ${req.session.userId}.`;
+            res.redirect("/login")
+          }
         } catch (err) {
-            console.log(`User Not Featched from db due to the error below\n${err}`);
-            res.send(err);
+          console.log(`User Not Fetched from db due to the error below\n${err}`);
+          res.send(err);
         }
-    };
+      };
 
     static g2_get = async (req, res) => {
         try {
             const user = await this.getUserById(req.session.userId);
+            console.log("user: ", user);
             console.log(user);
             if (user) {
                 const msg = this.getMsgOnce(req);
@@ -45,7 +46,9 @@ class Controller {
                     // if user infos are 'DEFAULT', display an empty page.
                     res.render("g2.ejs", { msg: msg, user: { userType: user.userType } });
                 } else {
+                    user.userId = req.session.userId;
                     res.render("g2.ejs", { msg: msg, user: user });
+                    console.log("userId: ", user.userId);
                 }
             } else {
                 req.session.msg = `Unknow userId: ${req.session.userId}.`;
@@ -76,7 +79,8 @@ class Controller {
                         model: data.model,
                         year: data.year,
                         platno: data.platno,
-                    }
+                    },
+                    testType: "G"
                 }, {
                 new: true
             });
@@ -124,7 +128,7 @@ class Controller {
                     year: data.year,
                     platno: data.platno,
                 },
-                testType: "G2",
+                testType: "G2"
             });
 
             console.log(user);
@@ -135,6 +139,49 @@ class Controller {
             res.send(err);
         }
     };
+
+
+    static checkG2Result = async (req, res) => {
+        try {
+          const user = await this.getUserById(req.session.userId);
+          console.log("testComment:", user.testComment);
+          console.log("testPassed:", user.testPassed);
+      
+          if (user) {
+            const msg = this.getMsgOnce(req);
+            user.userId = req.session.userId;
+            res.render("g2.ejs", { msg: msg, user: user });
+          } else {
+            res.status(404).json({ error: 'User not found' });
+          }
+        } catch (err) {
+          console.log(`Error fetching user: ${err}`);
+          res.status(500).json({ error: 'Error fetching user' });
+        }
+      };
+
+
+
+
+      static checkGResult = async (req, res) => {
+        try {
+          const user = await this.getUserById(req.session.userId);
+          console.log("testComment:", user.testComment);
+          console.log("testPassed:", user.testPassed);
+      
+          if (user) {
+            const msg = this.getMsgOnce(req);
+            user.userId = req.session.userId;
+            res.render("g.ejs", { msg: msg, user: user });
+          } else {
+            res.status(404).json({ error: 'User not found' });
+          }
+        } catch (err) {
+          console.log(`Error fetching user: ${err}`);
+          res.status(500).json({ error: 'Error fetching user' });
+        }
+      };
+
 
     static validate = (req) => {
         const errors = validationResult(req);

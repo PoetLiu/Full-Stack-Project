@@ -85,6 +85,21 @@
                                         <% } %>
                             </div>
                 </form>
+
+
+                <form class="slot-book-form" action="/checkg2result" method="post">
+                    <div class="text-center mt-4">
+                      <% if (user.testComment && user.testPassed !== undefined && user.testPassed !== null) { %>
+                        <div id="resultContainer">
+                          <p>Test Comment: <span id="testComment"><%= user.testComment %></span></p>
+                          <p>Test Result: <span id="testPassed"><%= user.testPassed ? 'Passed' : 'Failed' %></span></p>
+                        </div>
+                      <% } else { %>
+                        <p>Result not available</p>
+                      <% } %>
+                      <button id="checkResult" class="btn btn-primary">Check Result</button>
+                    </div>
+                  </form>
                 <%- include('./partials/footer.ejs') -%>
                 <%- include('./partials/libs.ejs') -%>
                 <script src="js/g2.js"></script>

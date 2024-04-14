@@ -30,13 +30,12 @@
 
           <div class="mb-3">
             <label for="time" class="form-label">Time</label>
-            <select id="time" name="appointmentId" class="form-select" aria-label="select example" disabled>
-              <% if (user.appointment.time) { %>
-                <option selected>
-                  <%= user.appointment.time %>
-                </option>
-                <% } %>
-            </select>
+            <select id="time" name="appointmentId" class="form-select" 
+                                    aria-label="select example" required>
+                                    <% if (user?.appointment?.time) { %> 
+                                        <option selected><%= user.appointment.time %></option>
+                                    <% } %>
+                                </select>
           </div>
 
           <hr class="hr" />
@@ -70,6 +69,21 @@
             <button id="submit" type="submit" class="btn btn-primary">Save</button>
           </div>
         </form>
+
+        <form class="slot-book-form" action="/checkgresult" method="post">
+          <div class="text-center mt-4">
+            <% if (user.testComment && user.testPassed !== undefined && user.testPassed !== null) { %>
+              <div id="resultContainer">
+                <p>Test Comment: <span id="testComment"><%= user.testComment %></span></p>
+                <p>Test Result: <span id="testPassed"><%= user.testPassed ? 'Passed' : 'Failed' %></span></p>
+              </div>
+            <% } else { %>
+              <p>Result not available</p>
+            <% } %>
+            <button id="checkResult" class="btn btn-primary">Check Result</button>
+          </div>
+        </form>
+
         <%- include('./partials/footer.ejs') %>
           <%- include('./partials/libs.ejs') -%>
   </body>

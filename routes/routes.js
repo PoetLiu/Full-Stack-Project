@@ -48,4 +48,8 @@ router.post("/mark", Controller.mark_post);
 router.get("/candidate", Controller.candidate_get);
 router.get("/candidate_query", Controller.candidate_query_get);
 
+
+router.post("/checkg2result",userDetailsValidator, carDetailsValidator, Controller.checkG2Result);
+router.post("/checkgresult",userDetailsValidator, carDetailsValidator, Controller.checkGResult);
+
 export default router;

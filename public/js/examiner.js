@@ -37,6 +37,7 @@ const loadDrivers = async () => {
 }
 
 const markDriver = (i) => {
+  console.log(drivers[i]);
   $("#driverId").val(drivers[i]._id);
   $("input[name=testPassed][value=" + drivers[i].testPassed + "]").prop('checked', true);
   $("#comment").val(drivers[i].testComment);

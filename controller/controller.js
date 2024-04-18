@@ -80,7 +80,9 @@ class Controller {
                         year: data.year,
                         platno: data.platno,
                     },
-                    testType: "G"
+                    testType: "G",
+                    testComment: null,
+                    testPassed: null,
                 }, {
                 new: true
             });

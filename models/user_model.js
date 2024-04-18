@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-const uri = "mongodb+srv://albertliumr:TO5ZyE9PjM9yIxYx@cluster0.idyc212.mongodb.net/project?retryWrites=true&w=majority";
+import {} from "dotenv/config";
 
-mongoose.connect(uri)
+mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     console.log("Connected to MongoDB successfully.")
 }).catch((err) => {
